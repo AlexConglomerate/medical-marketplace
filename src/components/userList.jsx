@@ -20,7 +20,7 @@ const UserList = () => {
     }, []);
 
     return (
-        <div className={'flex flex-row flex-wrap gap-10 m-24 '}>
+        <div className={'flex flex-row flex-wrap gap-10 my-24 '}>
             {users.map(user => (
                 <Card user={user}/>
             ))}
