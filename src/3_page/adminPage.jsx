@@ -8,7 +8,6 @@ import Input from "../1_ui/input";
 
 function AdminPage(props) {
     const [users, setUsers] = useState([]);
-
     const [text, setText] = useState('');
 
     const dispatch = useDispatch()
@@ -22,7 +21,7 @@ function AdminPage(props) {
         const {value} = e.target
         setText(value)
 
-        const _users = users.filter(item => {
+        const _users = newUsers.users.filter(item => {
             const name = item.name.first
             if (name.indexOf(value) == 0) {
                 return item
@@ -37,7 +36,10 @@ function AdminPage(props) {
         setUsers(sortedUsers)
     }
 
-    const handleUpdate = () => dispatch(getUserInfo())
+    const handleUpdate = () => {
+        dispatch(getUserInfo())
+        setText('')
+    }
 
 
     return (
