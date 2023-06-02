@@ -5,9 +5,8 @@ const initialState = {
     users: null,
 }
 
-// прописываем алгоритм: при каком action как менять состояние
 const mySlice = createSlice({
-    name: 'user', // первое слово в названии action + '/'
+    name: 'user',
     initialState,
     reducers: {
         setData: (state, {payload}) => {
@@ -23,7 +22,7 @@ export const actionUser = {setData}
 
 export const getUserInfo = () => async (dispatch) => {
     try {
-        const {data} = await axios.get('https://randomuser.me/api/?results=30');
+        const {data} = await axios.get('https://randomuser.me/api/?results=32');
         console.log(`data.results`, data.results)
         dispatch(setData(data.results))
     } catch (error) {
@@ -31,7 +30,6 @@ export const getUserInfo = () => async (dispatch) => {
     }
 }
 
-// прописываем функцию, через которую будем считывать state
 export const getUser = () => state => {
     return state.user
 }
