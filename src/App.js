@@ -1,8 +1,7 @@
-import UserList from "./components/userList";
-import ControlPanel from "./components/controlPanel";
 import {useEffect} from "react";
 import {useDispatch} from "react-redux";
 import {getUserInfo} from "./store/user";
+import AdminPage from "./3_page/adminPage";
 
 function App() {
     const dispatch = useDispatch()
@@ -12,8 +11,7 @@ function App() {
 
     return (
         <div className={'flex flex-col mx-20 mx-24'}>
-            <ControlPanel/>
-            <UserList/>
+            <AdminPage/>
         </div>
     );
 }
