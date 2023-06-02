@@ -6,7 +6,7 @@ import Card from "../2_components/card";
 import Button from "../1_ui/button";
 import Input from "../1_ui/input";
 
-function AdminPage(props) {
+function AdminPage() {
     const [users, setUsers] = useState([]);
     const [text, setText] = useState('');
 
@@ -56,9 +56,8 @@ function AdminPage(props) {
             <div className={'flex flex-row flex-wrap gap-10 my-24 '}>
                 {users && users.map(user => <Card user={user}/>)}
             </div>
+
         </div>
-
-
     );
 }
 
