@@ -8,12 +8,28 @@ import Input from "../1_ui/input";
 
 function AdminPage(props) {
     const [users, setUsers] = useState([]);
+
+    const [text, setText] = useState('');
+
     const dispatch = useDispatch()
     const newUsers = useSelector(getUser())
 
     useEffect(() => {
         setUsers(newUsers.users);
     }, [newUsers]);
+
+    const handleChange = (e) => {
+        const {value} = e.target
+        setText(value)
+
+        const _users = users.filter(item => {
+            const name = item.name.first
+            if (name.indexOf(value) == 0) {
+                return item
+            }
+        })
+        setUsers(_users)
+    }
 
     const handleSort = () => {
         const _users = [...users]
@@ -27,12 +43,14 @@ function AdminPage(props) {
     return (
         <div className={'flex flex-col mx-20 mx-24'}>
 
+            {/*control panel*/}
             <div className={'flex flex-row gap-10 mt-10 '}>
-                <Input/>
+                <Input text={text} handleChange={handleChange}/>
                 <Button name={'Sort'} onClick={handleSort}/>
                 <Button name={'Update'} onClick={handleUpdate}/>
             </div>
 
+            {/*user cards*/}
             <div className={'flex flex-row flex-wrap gap-10 my-24 '}>
                 {users && users.map(user => <Card user={user}/>)}
             </div>
