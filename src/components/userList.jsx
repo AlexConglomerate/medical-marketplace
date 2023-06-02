@@ -1,27 +1,20 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import Card from "./card";
+import {useSelector} from "react-redux";
+import {getUser} from "../store/user";
 
 const UserList = () => {
     const [users, setUsers] = useState([]);
 
+    const newUsers = useSelector(getUser())
     useEffect(() => {
-        const fetchUsers = async () => {
-            try {
-                const response = await axios.get('https://randomuser.me/api/?results=30');
-                const {data} = response;
-                setUsers(data.results);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-
-        fetchUsers();
-    }, []);
+        setUsers(newUsers.users);
+    }, [newUsers]);
 
     return (
         <div className={'flex flex-row flex-wrap gap-10 my-24 '}>
-            {users.map(user => (
+            {users && users.map(user => (
                 <Card user={user}/>
             ))}
         </div>
